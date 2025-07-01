@@ -1,6 +1,7 @@
 import onnxruntime as ort
 import cv2
 import numpy as np
+from PIL import Image
 
 class ONNXResult:
     def __init__(self, raw_output, class_names, original_image):
@@ -38,6 +39,8 @@ class ONNXResult:
         return img
 
 
+
+
 class YOLO:
     def __init__(self, model_path, class_names):
         self.session = ort.InferenceSession(model_path)
@@ -45,8 +48,16 @@ class YOLO:
         self.input_shape = self.session.get_inputs()[0].shape
         self.class_names = class_names
 
-    def __call__(self, image_path):
-        img = cv2.imread(image_path)
+    def __call__(self, image_input):  # now accepts array or PIL.Image
+        if isinstance(image_input, str):  # if path
+            img = cv2.imread(image_input)
+        elif isinstance(image_input, Image.Image):  # PIL image
+            img = np.array(image_input.convert("RGB"))[..., ::-1]  # Convert to BGR for OpenCV
+        elif isinstance(image_input, np.ndarray):  # already NumPy
+            img = image_input
+        else:
+            raise ValueError("Unsupported image input type")
+
         img_resized = cv2.resize(img, (640, 640))
         img_input = img_resized.transpose(2, 0, 1)[np.newaxis, :, :, :] / 255.0
         img_input = img_input.astype(np.float32)
