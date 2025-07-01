@@ -4,4 +4,4 @@ opencv-python-headless
 matplotlib
 fpdf
 onnxruntime
-tensorflow==2.5.3
+
