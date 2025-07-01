@@ -3,4 +3,5 @@ Pillow
 opencv-python-headless
 matplotlib
 fpdf
+onnxruntime
 tensorflow==2.13.0
