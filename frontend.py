@@ -108,6 +108,17 @@ if language == "English":
                 st.image(result_img, caption="Detected Objects", use_column_width=True)
                 
                 boxes = results.boxes
+                for i in range(len(boxes.cls)):
+                    class_id = int(boxes.cls[i])
+                    conf = float(boxes.conf[i])
+                
+                    if class_id < len(results.names):
+                        label = results.names[class_id]
+                    else:
+                        label = f"Unknown Class {class_id}"
+                
+                    detected_labels.add(label)
+                    confidence_map[label] = f"{conf:.2%}"
                 biodegradable = {'apple', 'banana'}
                 non_biodegradable = {'plastic', 'glass'}
                 detected_labels = set()
