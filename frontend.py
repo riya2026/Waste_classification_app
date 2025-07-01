@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 from onnx_yolo_wrapper import YOLO
 import cv2
+import numpy
 import matplotlib.pyplot as plt
 from fpdf import FPDF
 import io
@@ -36,10 +37,6 @@ def predict_image_class(image, model):
 
 if language == "English":
     st.title("Waste Classification App - Keep Environment Clean")
-    
-    from tensorflow.keras.models import load_model
-    import numpy as np
-    import cv2
 
     cnnModel = load_model("model.keras")
     class_names = ['apple', 'banana', 'glass', 'plastic']
