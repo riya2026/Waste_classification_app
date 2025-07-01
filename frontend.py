@@ -105,22 +105,23 @@ if language == "English":
             if st.button("🔍 Detect Objects"):
                 
                 st.subheader("YOLOv8 Detection Results")
-                results = model.predict(source=st.session_state.image)
-                result_img = results[0].plot()
+                results = model(st.session_state.image)
+                result_img = results.plot()
                 st.image(result_img, caption="Detected Objects", use_column_width=True)
-
-                boxes = results[0].boxes
+                
+                boxes = results.boxes
                 biodegradable = {'apple', 'banana'}
                 non_biodegradable = {'plastic', 'glass'}
                 detected_labels = set()
                 confidence_map = {}
-
+                
                 if boxes is not None and boxes.cls is not None:
                     for i in range(len(boxes.cls)):
-                        label = results[0].names[int(boxes.cls[i])]
+                        label = results.names[int(boxes.cls[i])]
                         conf = float(boxes.conf[i])
                         detected_labels.add(label)
                         confidence_map[label] = f"{conf:.2%}"
+
 
                     st.subheader("♻️ Waste Type Classification")
                     waste_type = None
