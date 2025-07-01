@@ -18,7 +18,6 @@ language = st.selectbox("🌐 Choose Language / மொழியைத் தே�
 class_names = ["apple", "banana", "plastic", "glass"]  # Add your real class list here
 model = YOLO("best.onnx", class_names)
 
-#cnnModel = load_model("model.keras")
 class_names = ['apple', 'banana', 'glass', 'plastic']
 
 def predict_image_class(image, model):
