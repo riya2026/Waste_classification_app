@@ -1,6 +1,5 @@
 streamlit
 Pillow
-ultralytics
 opencv-python-headless
 matplotlib
 fpdf
