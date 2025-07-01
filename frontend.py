@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from ultralytics import YOLO
+from onnx_yolo_wrapper import YOLO
 import cv2
 import matplotlib.pyplot as plt
 from fpdf import FPDF
