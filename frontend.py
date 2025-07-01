@@ -38,7 +38,7 @@ def predict_image_class(image, model):
 if language == "English":
     st.title("Waste Classification App - Keep Environment Clean")
 
-    cnnModel = load_model("model.keras")
+    #cnnModel = load_model("model.keras")
     class_names = ['apple', 'banana', 'glass', 'plastic']
 
     def predict_image_class(image, model):
