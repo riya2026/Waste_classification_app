@@ -1,7 +1,7 @@
-streamlit
+streamlit==1.35.0
 Pillow
-ultralytics
+ultralytics==8.1.13
 opencv-python-headless
 matplotlib
 fpdf
-tensorflow
+tensorflow==2.13.0
