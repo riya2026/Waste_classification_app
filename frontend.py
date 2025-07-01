@@ -15,10 +15,9 @@ st.set_page_config(page_title="Image Input App", layout="centered")
 
 language = st.selectbox("🌐 Choose Language / மொழியைத் தேர்ந்தெடுக்கவும் / Pilih Bahasa", ["English", "Tamil", "Malay"])
 
+class_names = ["apple", "banana", "plastic", "glass"]  # Add your real class list here
+model = YOLO("best.onnx", class_names)
 
- 
-
-model = YOLO("best.onnx")
 #cnnModel = load_model("model.keras")
 class_names = ['apple', 'banana', 'glass', 'plastic']
 
