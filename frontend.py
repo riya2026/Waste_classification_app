@@ -18,7 +18,7 @@ language = st.selectbox("🌐 Choose Language / மொழியைத் தே�
 class_names = ["apple", "banana", "plastic", "glass"]  # Add your real class list here
 model = YOLO("best.onnx", class_names)
 
-class_names = ['apple', 'banana', 'glass', 'plastic']
+
 
 def predict_image_class(image, model):
     image = image.convert('RGB')
@@ -279,7 +279,7 @@ if language == 'Tamil':
             st.image(
                 st.session_state.image,
                 caption="நீங்கள் வழங்கிய படம் இங்கே",
-                use_column_width=True
+                use_container_width=True
             )
         
             # Detection Button
@@ -293,7 +293,7 @@ if language == 'Tamil':
                 result_img = results[0].plot()
     
                 # Show image with detections
-                st.image(result_img, caption="Detected Objects", use_column_width=True)
+                st.image(result_img, caption="Detected Objects", use_container_width=True)
     
                 # Waste classification logic
                 boxes = results[0].boxes
@@ -473,7 +473,7 @@ if language == 'Malay':
             st.image(
                 st.session_state.image,
                 caption="Ini adalah imej yang anda berikan",
-                use_column_width=True
+                use_container_width=True
             )
     
             # Butang Pengesanan
@@ -488,7 +488,7 @@ if language == 'Malay':
                 result_img = results[0].plot()
     
                 # Show image with detections
-                st.image(result_img, caption="Detected Objects", use_column_width=True)
+                st.image(result_img, caption="Detected Objects", use_container_width=True)
     
                 # Waste classification logic
                 boxes = results[0].boxes
