@@ -104,19 +104,19 @@ if language == "English":
 
             if st.button("🔍 Detect Objects"):
                 # --- CNN Classification first ---
-                st.subheader("🧠 CNN Classification")
-                predicted_class = predict_image_class(st.session_state.image, cnnModel)
-                st.write(f"Predicted Class (CNN): **{predicted_class}**")
+                #st.subheader("🧠 CNN Classification")
+                #predicted_class = predict_image_class(st.session_state.image, cnnModel)
+                #st.write(f"Predicted Class (CNN): **{predicted_class}**")
 
                 # --- Audio feedback from CNN result ---
-                if predicted_class in ['apple', 'banana']:
-                    st.success("This object is **Biodegradable** (based on CNN).")
-                    st.audio("biodegradable.mp3", format="audio/mp3")
-                elif predicted_class in ['glass', 'plastic']:
-                    st.error("This object is **Non-Biodegradable** (based on CNN).")
-                    st.audio("non-biodegradable.mp3", format="audio/mp3")
-                else:
-                    st.warning("Object class could not be determined.")
+                #if predicted_class in ['apple', 'banana']:
+                #    st.success("This object is **Biodegradable** (based on CNN).")
+                #    st.audio("biodegradable.mp3", format="audio/mp3")
+                #elif predicted_class in ['glass', 'plastic']:
+                #    st.error("This object is **Non-Biodegradable** (based on CNN).")
+                #    st.audio("non-biodegradable.mp3", format="audio/mp3")
+                #else:
+                #    st.warning("Object class could not be determined.")
 
                 # --- YOLO Detection ---
                 st.subheader("YOLOv8 Detection Results")
