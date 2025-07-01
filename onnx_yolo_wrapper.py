@@ -32,8 +32,11 @@ class ONNXResult:
     def plot(self):
         img = self.original_image.copy()
         for x1, y1, x2, y2, conf, class_id in self.boxes.raw:
+            if class_id >= len(self.names):
+                label = f"Class {class_id} ({conf:.2f})"
+            else:
+                label = f"{self.names[class_id]} {conf:.2f}"
             cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            label = f"{self.names[class_id]} {conf:.2f}"
             cv2.putText(img, label, (x1, y1 - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
         return img
