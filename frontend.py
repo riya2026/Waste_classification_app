@@ -98,7 +98,7 @@ if language == "English":
 
         if st.session_state.image is not None:
             st.subheader("Selected Image")
-            st.image(st.session_state.image, caption="Here is the image you provided", use_column_width=True)
+            st.image(st.session_state.image, caption="Here is the image you provided", use_container_width=True)
 
             if st.button("🔍 Detect Objects"):
             
