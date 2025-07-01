@@ -10,12 +10,12 @@ class ONNXResult:
         self.original_image = original_image
         self.boxes = self._process_boxes()
 
-    def _process_boxes(self, conf_thres=0.25):
+        def _process_boxes(self, conf_thres=0.25):
         boxes = []
-        raw = self.raw_output[0]  # shape: [N, 85]
+        raw = self.raw_output[0][0]  # correct shape: [N, 85]
         cls_list = []
         conf_list = []
-
+    
         for pred in raw:
             if pred[4] > conf_thres:
                 class_id = np.argmax(pred[5:])
@@ -26,8 +26,9 @@ class ONNXResult:
                 boxes.append([x1, y1, x2, y2, conf, class_id])
                 cls_list.append(class_id)
                 conf_list.append(conf)
-
+    
         return type("Boxes", (), {"cls": cls_list, "conf": conf_list, "raw": boxes})
+            return type("Boxes", (), {"cls": cls_list, "conf": conf_list, "raw": boxes})
 
     def plot(self):
         img = self.original_image.copy()
