@@ -101,37 +101,34 @@ if language == "English":
             st.image(st.session_state.image, caption="Here is the image you provided", use_column_width=True)
 
             if st.button("🔍 Detect Objects"):
-                
+            
                 st.subheader("YOLOv8 Detection Results")
                 results = model(st.session_state.image)
                 result_img = results.plot()
-                st.image(result_img, caption="Detected Objects", use_column_width=True)
-                
+                st.image(result_img, caption="Detected Objects", use_container_width=True)
+            
                 boxes = results.boxes
-                for i in range(len(boxes.cls)):
-                    class_id = int(boxes.cls[i])
-                    conf = float(boxes.conf[i])
-                
-                    if class_id < len(results.names):
-                        label = results.names[class_id]
-                    else:
-                        label = f"Unknown Class {class_id}"
-                
-                    detected_labels.add(label)
-                    confidence_map[label] = f"{conf:.2%}"
                 biodegradable = {'apple', 'banana'}
                 non_biodegradable = {'plastic', 'glass'}
+            
+                # ✅ Define sets and maps BEFORE the loop
                 detected_labels = set()
                 confidence_map = {}
-                
+            
                 if boxes is not None and boxes.cls is not None:
                     for i in range(len(boxes.cls)):
-                        label = results.names[int(boxes.cls[i])]
+                        class_id = int(boxes.cls[i])
                         conf = float(boxes.conf[i])
+            
+                        # ✅ Safe check to avoid index out of range
+                        if class_id < len(results.names):
+                            label = results.names[class_id]
+                        else:
+                            label = f"Unknown Class {class_id}"
+            
                         detected_labels.add(label)
                         confidence_map[label] = f"{conf:.2%}"
-
-
+            
                     st.subheader("♻️ Waste Type Classification")
                     waste_type = None
                     if detected_labels & biodegradable and not detected_labels & non_biodegradable:
