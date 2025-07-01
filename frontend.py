@@ -17,7 +17,7 @@ language = st.selectbox("🌐 Choose Language / மொழியைத் தே�
 
  
 
-model = YOLO("best.pt")
+model = YOLO("best.onnx")
 cnnModel = load_model("model.keras")
 class_names = ['apple', 'banana', 'glass', 'plastic']
 
