@@ -115,7 +115,7 @@ if language == "English":
                     "https://fast-api-backend-dv4g.onrender.com/predict",  # Change this to your deployed URL on Streamlit Cloud or public host
                     files={"file": ("image.jpg", image_bytes, "image/jpeg")},
                 )
-                
+                boxes=[]
                 if response.status_code == 200:
                     result = response.json()
                     boxes = result.get("results", [])
