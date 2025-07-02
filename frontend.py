@@ -112,7 +112,7 @@ if language == "English":
                 
                 # Send to FastAPI
                 response = requests.post(
-                    "http://127.0.0.1:8000/detect",  # Change this to your deployed URL on Streamlit Cloud or public host
+                    "https://fast-api-backend-dv4g.onrender.com/predict",  # Change this to your deployed URL on Streamlit Cloud or public host
                     files={"file": ("image.jpg", image_bytes, "image/jpeg")},
                 )
                 
