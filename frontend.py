@@ -139,27 +139,20 @@ if language == "English":
 
                 #st.image(result_img, caption="Detected Objects", use_container_width=True)
             
-                boxes = results.boxes
                 biodegradable = {'apple', 'banana'}
                 non_biodegradable = {'plastic', 'glass'}
-            
-                # ✅ Define sets and maps BEFORE the loop
+                
                 detected_labels = set()
                 confidence_map = {}
-            
-                if boxes is not None and boxes.cls is not None:
-                    for i in range(len(boxes.cls)):
-                        class_id = int(boxes.cls[i])
-                        conf = float(boxes.conf[i])
-            
-                        # ✅ Safe check to avoid index out of range
-                        if class_id < len(results.names):
-                            label = results.names[class_id]
-                        else:
-                            label = f"Unknown Class {class_id}"
-            
+                
+                if boxes:
+                    for box in boxes:
+                        label = box["label"]
+                        conf = float(box["confidence"])
+                
                         detected_labels.add(label)
                         confidence_map[label] = f"{conf:.2%}"
+
             
                     st.subheader("♻️ Waste Type Classification")
                     waste_type = None
