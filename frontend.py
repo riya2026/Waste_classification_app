@@ -135,7 +135,8 @@ if language == "English":
                     # ⬅ Your logic continues here...
                 
                 else:
-                    st.error("❌ Error from detection server.")
+                    st.error(f"❌ Error from detection server: {response.status_code}")
+                    st.text(response.text)
 
                 #st.image(result_img, caption="Detected Objects", use_container_width=True)
             
