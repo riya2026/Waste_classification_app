@@ -11,8 +11,6 @@ import requests
 import numpy as np
 from tflite_runtime.interpreter import Interpreter
 
-st.write('tf')
-
 st.set_page_config(page_title="Image Input App", layout="centered")
 
 language = st.selectbox("🌐 Choose Language / மொழியைத் தேர்ந்தெடுக்கவும் / Pilih Bahasa", ["English", "Tamil", "Malay"])
