@@ -355,9 +355,11 @@ if language == "Tamil":
                     waste_type = None
                     if detected_labels & biodegradable and not detected_labels & non_biodegradable:
                         st.success("இது ஒரு **உயிர்ப்புச்சேரியக்கழிவு**.")
+                        st.audio("biodegradable.mp3", format="audio/mp3")
                         waste_type = "Biodegradable"
                     elif detected_labels & non_biodegradable and not detected_labels & biodegradable:
                         st.error("இது ஒரு **உயிர்ப் சாரா கழிவு**.")
+                        st.audio("non-biodegradable.mp3", format="audio/mp3")
                         waste_type = "Non-Biodegradable"
                     elif detected_labels & biodegradable and detected_labels & non_biodegradable:
                         st.info("இது **உயிர்ப்புச்சேரி மற்றும் உயிர்ப் சாரா** கழிவுகளை உள்ளடக்கியது.")
@@ -548,9 +550,11 @@ if language == "Malay":
                     waste_type = None
                     if detected_labels & biodegradable and not detected_labels & non_biodegradable:
                         st.success("Sisa ini adalah **Biodegradasi**.")
+                        st.audio("biodegradable.mp3", format="audio/mp3")
                         waste_type = "Biodegradable"
                     elif detected_labels & non_biodegradable and not detected_labels & biodegradable:
                         st.error("Sisa ini adalah **Tidak Biodegradasi**.")
+                        st.audio("non-biodegradable.mp3", format="audio/mp3")
                         waste_type = "Non-Biodegradable"
                     elif detected_labels & biodegradable and detected_labels & non_biodegradable:
                         st.info("Sisa ini mengandungi **Biodegradasi dan Tidak Biodegradasi**.")
