@@ -3,5 +3,5 @@ Pillow
 opencv-python-headless
 matplotlib
 fpdf
-onnxruntime
+requests
 
