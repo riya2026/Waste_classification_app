@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from fpdf import FPDF
 import io
 import os
+import requests
+
 #from tensorflow.keras.models import load_model
 
 
