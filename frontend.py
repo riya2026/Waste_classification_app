@@ -137,7 +137,7 @@ if language == "English":
                 else:
                     st.error("❌ Error from detection server.")
 
-                st.image(result_img, caption="Detected Objects", use_container_width=True)
+                #st.image(result_img, caption="Detected Objects", use_container_width=True)
             
                 boxes = results.boxes
                 biodegradable = {'apple', 'banana'}
