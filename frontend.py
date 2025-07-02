@@ -156,15 +156,19 @@ if language == "English":
                     waste_type = None
                     if detected_labels & biodegradable and not detected_labels & non_biodegradable:
                         st.success("This waste is **Biodegradable**.")
+                        st.audio("biodegradable.mp3", format="audio/mp3")
                         waste_type = "Biodegradable"
                     elif detected_labels & non_biodegradable and not detected_labels & biodegradable:
                         st.error("This waste is **Non-Biodegradable**.")
+                        st.audio("non-biodegradable.mp3", format="audio/mp3")
                         waste_type = "Non-Biodegradable"
                     elif detected_labels & biodegradable and detected_labels & non_biodegradable:
                         st.info("This waste contains **both Biodegradable and Non-Biodegradable** materials.")
                         waste_type = "Mixed"
                     else:
                         st.warning("No recognizable waste type found.")
+
+                    
 
                     # PDF Generation
                     if waste_type in ["Biodegradable", "Non-Biodegradable"]:
