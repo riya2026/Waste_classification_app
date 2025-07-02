@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from onnx_yolo_wrapper import YOLO
+#from onnx_yolo_wrapper import YOLO
 import cv2
 import numpy
 import matplotlib.pyplot as plt
@@ -16,7 +16,7 @@ st.set_page_config(page_title="Image Input App", layout="centered")
 language = st.selectbox("🌐 Choose Language / மொழியைத் தேர்ந்தெடுக்கவும் / Pilih Bahasa", ["English", "Tamil", "Malay"])
 
 class_names = ["apple", "banana", "plastic", "glass"]  # Add your real class list here
-model = YOLO("best.onnx", class_names)
+#model = YOLO("best.onnx", class_names)
 
 
 
@@ -36,8 +36,7 @@ def predict_image_class(image, model):
 if language == "English":
     st.title("Waste Classification App - Keep Environment Clean")
 
-    #cnnModel = load_model("model.keras")
-    class_names = ['apple', 'banana', 'glass', 'plastic']
+    
 
     def predict_image_class(image, model):
         image = image.convert('RGB')
@@ -103,8 +102,34 @@ if language == "English":
             if st.button("🔍 Detect Objects"):
             
                 st.subheader("YOLOv8 Detection Results")
-                results = model(st.session_state.image)
-                result_img = results.plot()
+                image_bytes = io.BytesIO()
+                st.session_state.image.save(image_bytes, format='JPEG')
+                image_bytes.seek(0)
+                
+                # Send to FastAPI
+                response = requests.post(
+                    "http://127.0.0.1:8000/detect",  # Change this to your deployed URL on Streamlit Cloud or public host
+                    files={"file": ("image.jpg", image_bytes, "image/jpeg")},
+                )
+                
+                if response.status_code == 200:
+                    result = response.json()
+                    boxes = result.get("results", [])
+                    
+                    # Draw boxes on the image
+                    img = np.array(st.session_state.image.convert("RGB"))
+                    for box in boxes:
+                        x1, y1, x2, y2 = map(int, [box["x1"], box["y1"], box["x2"], box["y2"]])
+                        label = box["label"]
+                        conf = float(box["confidence"])
+                        cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                        cv2.putText(img, f"{label} {conf:.2%}", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+                
+                    st.image(img, caption="Detected Objects", use_container_width=True)
+                    
+                    # Continue with your biodegradable / non-biodegradable logic here
+                else:
+                    st.error("❌ Error from detection server.")
                 st.image(result_img, caption="Detected Objects", use_container_width=True)
             
                 boxes = results.boxes
