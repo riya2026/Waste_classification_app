@@ -103,7 +103,9 @@ if language == "English":
             
                 st.subheader("YOLOv8 Detection Results")
                 image_bytes = io.BytesIO()
-                st.session_state.image.save(image_bytes, format='JPEG')
+                image_rgb = st.session_state.image.convert("RGB")
+                image_rgb.save(image_bytes, format='JPEG')
+
                 image_bytes.seek(0)
                 
                 # Send to FastAPI
