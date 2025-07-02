@@ -9,7 +9,6 @@ import io
 import os
 import requests
 import numpy as np
-from tflite_runtime.interpreter import Interpreter
 
 st.set_page_config(page_title="Image Input App", layout="centered")
 
