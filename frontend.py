@@ -130,10 +130,13 @@ if language == "English":
                         cv2.putText(img, f"{label} {conf:.2%}", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
                 
                     st.image(img, caption="Detected Objects", use_container_width=True)
-                    
-                    # Continue with your biodegradable / non-biodegradable logic here
+                
+                    # Continue with biodegradable / non-biodegradable logic using `boxes`
+                    # ⬅ Your logic continues here...
+                
                 else:
                     st.error("❌ Error from detection server.")
+
                 st.image(result_img, caption="Detected Objects", use_container_width=True)
             
                 boxes = results.boxes
