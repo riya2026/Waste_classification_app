@@ -1,7 +1,7 @@
 streamlit
 Pillow
 opencv-python-headless
-tflite-runtime
+tensorflow
 matplotlib
 fpdf
 requests
